@@ -1,0 +1,24 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+platforms:
+  - name: instance
+    image: geerlingguy/docker-ubuntu2204-ansible
+    pre_build_image: true
+    privileged: true
+    command: /lib/systemd/systemd
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+    tmpfs:
+      - /tmp:exec
+      - /run
+      - /run/lock
+    cgroupns_mode: host
+provisioner:
+  name: ansible
+  env:
+    ANSIBLE_ROLES_PATH: /home/etu54847/ansible_apache_projet
+verifier:
+  name: testinfra

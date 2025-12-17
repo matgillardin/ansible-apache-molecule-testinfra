@@ -1,0 +1,24 @@
+---
+galaxy_info:
+  role_name: apache_role
+  namespace: mon_namespace
+  author: votre_nom
+  description: Role Ansible pour installer et configurer Apache2
+  company: HE Namur-Liege-Luxembourg
+  
+  license: MIT
+  
+  min_ansible_version: "2.15"
+  
+  platforms:
+    - name: Ubuntu
+      versions:
+        - jammy
+        - focal
+  
+  galaxy_tags:
+    - apache
+    - web
+    - server
+
+dependencies: []

@@ -1,0 +1,31 @@
+---
+- name: Mettre a jour le cache apt
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: Installer apache2
+  apt:
+    name: apache2
+    state: present
+
+- name: Creer le repertoire des sites disponibles
+  file:
+    path: /etc/apache2/sites-available
+    state: directory
+    mode: '0755'
+
+- name: Copier le fichier de configuration personnalise
+  copy:
+    src: custom-site.conf
+    dest: /etc/apache2/sites-available/custom-site.conf
+    owner: root
+    group: root
+    mode: '0644'
+  notify: Reload Apache2
+
+- name: Assurer qu apache2 est demarre et active
+  service:
+    name: apache2
+    state: started
+    enabled: yes
